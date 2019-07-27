@@ -66,12 +66,12 @@ it won't even attempt to access the SIMD instructions.
 Also, [some rando][9] says you can measure the memory bandwidth
 used with cachegrind.  Seems useful.
 
-[1] https://www.eriksmistad.no/getting-started-with-opencl-and-gpu-computing/
-[2] https://gist.github.com/courtneyfaulkner/7919509  
-[3] https://stackoverflow.com/questions/9464190/error-code-11-what-are-all-possible-reasons-of-getting-error-cl-build-prog
-[4] https://www.fz-juelich.de/SharedDocs/Downloads/IAS/JSC/EN/slides/opencl/opencl-04-vector.pdf
-[5] https://community.khronos.org/t/how-to-avoid-double-allocation-on-cpu/3566/3
-[6] https://github.com/KhronosGroup/OpenCL-Docs
-[7] https://ds9a.nl/gcc-simd/index.html
-[8] https://stackoverflow.com/questions/43613577/compile-c-code-with-avx2-avx512-intrinsics-on-avx
-[9] https://superuser.com/questions/458133/how-to-measure-memory-bandwidth-usage
+[1]: https://www.eriksmistad.no/getting-started-with-opencl-and-gpu-computing/
+[2]: https://gist.github.com/courtneyfaulkner/7919509  
+[3]: https://stackoverflow.com/questions/9464190/error-code-11-what-are-all-possible-reasons-of-getting-error-cl-build-prog
+[4]: https://www.fz-juelich.de/SharedDocs/Downloads/IAS/JSC/EN/slides/opencl/opencl-04-vector.pdf
+[5]: https://community.khronos.org/t/how-to-avoid-double-allocation-on-cpu/3566/3
+[6]: https://github.com/KhronosGroup/OpenCL-Docs
+[7]: https://ds9a.nl/gcc-simd/index.html
+[8]: https://stackoverflow.com/questions/43613577/compile-c-code-with-avx2-avx512-intrinsics-on-avx
+[9]: https://superuser.com/questions/458133/how-to-measure-memory-bandwidth-usage
