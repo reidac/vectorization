@@ -1,0 +1,46 @@
+
+  Taken from:
+
+> https://www.eriksmistad.no/getting-started-with-opencl-and-gpu-computing/
+
+  
+  See also:
+
+> https://gist.github.com/courtneyfaulkner/7919509  
+  (Thanks Treovr!)
+
+  This latter URL is the source of the "devices.c" code here,
+which enumerates and describes the devices that the drivers can see.
+ 
+  Modified (at tnk10's suggestion) to also display the platform names.
+Apparently "platforms" live in the same scope as the ICD drivers.
+
+
+  Double-allocation issue:
+
+> https://community.khronos.org/t/how-to-avoid-double-allocation-on-cpu/3566
+
+  Suggestion is to use enqueueMapBuffer, much perplexity from 
+the responders as to why someone would want to do this.
+
+  There was an alignment issue, it turns out, which was causing
+part of the problem -- this is more or less what I was after, random
+shit that breaks vectorization and is invisible/stupid.
+
+  This might be most of the story -- it's possible that, actually,
+what we secretly really want is to use alignment and compiler
+intrinsics, plus some kind of guarantee about sequestial access,
+to get high throughput, and we don't actually care about OpeNCL 
+at all.
+
+  In any case, still unanswered is, how to diagnose?  How to 
+check that vector insructions are being used, that OpenCL is 
+distributing it over cores, that copies are not happening, etc.
+
+  See also:
+
+  Slightly ancient, but:
+> https://ds9a.nl/gcc-simd/index.html
+
+  More recent, architecture flags for the compiler:
+> https://stackoverflow.com/questions/43613577/compile-c-code-with-avx2-avx512-intrinsics-on-avx
