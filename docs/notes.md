@@ -69,7 +69,7 @@ instructions, but "x86intrin.h" is the one that collects
 them all together.
 
 There's Intel compiler [documentation][10] about how to 
-use intrinsics, which looks compliated, and in particular,
+use intrinsics, which looks complicated, and in particular,
 the loading and storing seems oddly complicated, it reflects
 the weirdness of having to copy arrays in OpenCL. 
 

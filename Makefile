@@ -2,7 +2,7 @@
 #
 opencl_kernel_targets = vec2 vec4
 opencl_targets = devices
-instrinsic_targets = intrinsic
+intrinsic_targets = intrinsic
 
 $(opencl_kernel_targets): %: %.c %.cl
 	gcc $@.c -o $@ -lOpenCL
