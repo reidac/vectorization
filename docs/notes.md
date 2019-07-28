@@ -75,7 +75,12 @@ the weirdness of having to copy arrays in OpenCL.
 
 There's a suggestive [union trick][11] that one might try.
 
-Also, [some rando][12] says you can measure the memory bandwidth
+Also, there is a [Linux Journal][12] article, which links to the
+GCC [docs][13], which explain a bit more about what's 
+going on in the union example.
+
+
+Also, [some rando][rando] says you can measure the memory bandwidth
 used with cachegrind.  Seems useful.
 
 [1]: https://www.eriksmistad.no/getting-started-with-opencl-and-gpu-computing/
@@ -89,4 +94,7 @@ used with cachegrind.  Seems useful.
 [9]: https://stackoverflow.com/questions/11228855/header-files-for-x86-simd-intrinsics
 [10]: https://scc.ustc.edu.cn/zlsc/sugon/intel/compiler_c/main_cls/intref_cls/common/intref_overview_details.htm
 [11]: https://stackoverflow.com/questions/4389818/64-bit-specific-simd-intrinsic
-[12]: https://superuser.com/questions/458133/how-to-measure-memory-bandwidth-usage
+[12]: https://www.linuxjournal.com/content/introduction-gcc-compiler-intrinsics-vector-processing
+[13]: https://gcc.gnu.org/onlinedocs/gcc/Vector-Extensions.html#Vector-Extensions
+
+[rando]: https://superuser.com/questions/458133/how-to-measure-memory-bandwidth-usage
