@@ -18,7 +18,9 @@ int main() {
 			 (LIST_SIZE-i)*4-2,(LIST_SIZE-i)*4-3);
   }
 
-  // Vector loop, maybe.  Should OpenMP-parallelize.
+  // Vector loop, maybe.
+#pragma omp parallel
+#pragma omp for schedule(static)
   for(int i=0;i<LIST_SIZE;i++) {
     c[i] = a[i] + b[i];
   }

@@ -11,7 +11,7 @@ $(opencl_targets): %: %.c
 	gcc $@.c -o $@ -lOpenCL
 
 $(intrinsic_targets): %: %.c
-	gcc $@.c -o $@
+	gcc $@.c -fopenmp -o $@
 
 clean:
 	rm -vf $(opencl_kernel_targets) $(opencl_targets) $(intrinsic_targets)

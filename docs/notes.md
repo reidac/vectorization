@@ -79,6 +79,32 @@ Also, there is a [Linux Journal][12] article, which links to the
 GCC [docs][13], which explain a bit more about what's 
 going on in the union example.
 
+The union trick doesn't seem to actually work.  What I did 
+was set up:
+
+```
+union {
+  __m128i v;
+  int v1,v2,v3,v4 
+} elem;
+```
+
+But, assignments to `elem.v1` seem to assign to all the 
+integers, not just one, as though the intrinsic type somehow
+pre-empted the union functionality.
+
+Using the `_mm_set_epi32` and `_mm_extract_epi32` to set up and
+retrieve the data works well.  To actually be equivalent to the
+OpenCL code, we need to spread it over the CPU cores, so 
+I've thrown in a dash of [OpenMP][14] for this, ensuring that
+the threading blocks contain contiguous index ranges, to help
+with cache management.
+
+
+## Testing
+
+So I have some codes that work, but I'm still not totally clear
+on how I can verify that they're actually vectorizing.
 
 Also, [some rando][rando] says you can measure the memory bandwidth
 used with cachegrind.  Seems useful.
@@ -96,5 +122,6 @@ used with cachegrind.  Seems useful.
 [11]: https://stackoverflow.com/questions/4389818/64-bit-specific-simd-intrinsic
 [12]: https://www.linuxjournal.com/content/introduction-gcc-compiler-intrinsics-vector-processing
 [13]: https://gcc.gnu.org/onlinedocs/gcc/Vector-Extensions.html#Vector-Extensions
+[14]: http://pages.tacc.utexas.edu/~eijkhout/pcse/html/omp-loop.html
 
 [rando]: https://superuser.com/questions/458133/how-to-measure-memory-bandwidth-usage
