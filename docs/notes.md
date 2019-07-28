@@ -63,7 +63,19 @@ There's an [older][7] reference to work from, and a reminder
 to specify the [architecture][8] to the compiler, otherwise
 it won't even attempt to access the SIMD instructions.
 
-Also, [some rando][9] says you can measure the memory bandwidth
+According to [this][9], there are lots of header files with
+intrinsics definitions for various generations of x86 vector
+instructions, but "x86intrin.h" is the one that collects
+them all together.
+
+There's Intel compiler [documentation][10] about how to 
+use intrinsics, which looks compliated, and in particular,
+the loading and storing seems oddly complicated, it reflects
+the weirdness of having to copy arrays in OpenCL. 
+
+There's a suggestive [union trick][11] that one might try.
+
+Also, [some rando][12] says you can measure the memory bandwidth
 used with cachegrind.  Seems useful.
 
 [1]: https://www.eriksmistad.no/getting-started-with-opencl-and-gpu-computing/
@@ -74,4 +86,7 @@ used with cachegrind.  Seems useful.
 [6]: https://github.com/KhronosGroup/OpenCL-Docs
 [7]: https://ds9a.nl/gcc-simd/index.html
 [8]: https://stackoverflow.com/questions/43613577/compile-c-code-with-avx2-avx512-intrinsics-on-avx
-[9]: https://superuser.com/questions/458133/how-to-measure-memory-bandwidth-usage
+[9]: https://stackoverflow.com/questions/11228855/header-files-for-x86-simd-intrinsics
+[10]: https://scc.ustc.edu.cn/zlsc/sugon/intel/compiler_c/main_cls/intref_cls/common/intref_overview_details.htm
+[11]: https://stackoverflow.com/questions/4389818/64-bit-specific-simd-intrinsic
+[12]: https://superuser.com/questions/458133/how-to-measure-memory-bandwidth-usage
