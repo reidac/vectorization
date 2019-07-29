@@ -3,7 +3,7 @@
 
 // Suppress deprecation warning for clCreateCommandQueue.
 // Successor is clCreateCommandQueueWithProperties, but
-// we don't know how to use that.x
+// we don't know how to use that.
 #define CL_TARGET_OPENCL_VERSION 120
 
 
