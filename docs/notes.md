@@ -79,22 +79,22 @@ Also, there is a [Linux Journal][12] article, which links to the
 GCC [docs][13], which explain a bit more about what's 
 going on in the union example.
 
-The union trick doesn't seem to actually work.  What I did 
-was set up:
+Used a union trick to get around having to use the 
+`_mm_set_epi32` and `_mm_extract_epi32` intrinsics to access
+data in the packed integers.  The trick is this:
 
 ```
 union {
   __m128i v;
-  int v1,v2,v3,v4 
+  int vvec[4];
 } elem;
 ```
 
-But, assignments to `elem.v1` seem to assign to all the 
-integers, not just one, as though the intrinsic type somehow
-pre-empted the union functionality.
+An earlier version with `int v1,v2,v3,v4` as the second union 
+component failed because, being in the union, it just overlaid 
+`v1`, `v2`, `v3`, and `v4`, causing considerable confusion. 
 
-Using the `_mm_set_epi32` and `_mm_extract_epi32` to set up and
-retrieve the data works well.  To actually be equivalent to the
+To actually be equivalent to the
 OpenCL code, we need to spread it over the CPU cores, so 
 I've thrown in a dash of [OpenMP][14] for this, ensuring that
 the threading blocks contain contiguous index ranges, to help

@@ -5,7 +5,10 @@
 
 #define LIST_SIZE 16777216
 
-typedef __m128i elem;
+typedef union {
+  __m128i v;
+  int vvec[4];
+} elem;
   
 int main() {
   elem *a = (elem *)aligned_alloc(128,sizeof(elem)*LIST_SIZE);
@@ -13,36 +16,24 @@ int main() {
   elem *c = (elem *)aligned_alloc(128,sizeof(elem)*LIST_SIZE);
 
   for(int i=0;i<LIST_SIZE;++i) {
-    a[i] = _mm_set_epi32(i*4,i*4+1,i*4+2,i*4+3);
-    b[i] = _mm_set_epi32((LIST_SIZE-i)*4,(LIST_SIZE-i)*4-1,
-			 (LIST_SIZE-i)*4-2,(LIST_SIZE-i)*4-3);
+    a[i].vvec[0] = i*4; a[i].vvec[1]=i*4+1;
+    a[i].vvec[2]=i*4+2; a[i].vvec[3]=i*4+3;
+    b[i].vvec[0]=(LIST_SIZE-i)*4; b[i].vvec[1]=(LIST_SIZE-i)*4-1;
+    b[i].vvec[2]=(LIST_SIZE-i)*4-2; b[i].vvec[3]=(LIST_SIZE-i)*4-3;
   }
 
   // Vector loop, maybe.
 #pragma omp parallel
 #pragma omp for schedule(static)
   for(int i=0;i<LIST_SIZE;i++) {
-    c[i] = a[i] + b[i];
+    c[i].v = a[i].v + b[i].v;
   }
 
   for(int i=0;i<LIST_SIZE;i++) {
     if ((i<3) || (i>(LIST_SIZE-4))) {
-	printf("%d + %d = %d\n",
-	       _mm_extract_epi32(a[i],3),
-	       _mm_extract_epi32(b[i],3),
-	       _mm_extract_epi32(c[i],3));
-	printf("%d + %d = %d\n",
-	       _mm_extract_epi32(a[i],2),
-	       _mm_extract_epi32(b[i],2),
-	       _mm_extract_epi32(c[i],2));
-	printf("%d + %d = %d\n",
-	       _mm_extract_epi32(a[i],1),
-	       _mm_extract_epi32(b[i],1),
-	       _mm_extract_epi32(c[i],1));
-	printf("%d + %d = %d\n",
-	       _mm_extract_epi32(a[i],0),
-	       _mm_extract_epi32(b[i],0),
-	       _mm_extract_epi32(c[i],0));
+      for(int j=0;j<4;j++) {
+	printf("%d + %d = %d\n",a[i].vvec[j],b[i].vvec[j],c[i].vvec[j]);
+      }
     }
   }
   return 0;
