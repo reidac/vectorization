@@ -108,6 +108,8 @@ there is a good site from the [arm][14] folks, but it's
 for the v8 architecture, and there's [gcc][15] docs, but they're
 for an ancient version of the compiler.
 
+Useful links [here][17] also, although not RPi-specific.
+
 ## Testing
 
 So I have some codes that work, but I'm still not totally clear
@@ -132,5 +134,6 @@ used with cachegrind.  Seems useful.
 [14]: http://pages.tacc.utexas.edu/~eijkhout/pcse/html/omp-loop.html
 [15]: https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/intrinsics
 [16]: https://gcc.gnu.org/onlinedocs/gcc-4.6.4/gcc/ARM-NEON-Intrinsics.html
+[17]: https://stackoverflow.com/questions/7269946/cortex-a9-neon-vs-vfp-usage-confusion
 
 [rando]: https://superuser.com/questions/458133/how-to-measure-memory-bandwidth-usage
