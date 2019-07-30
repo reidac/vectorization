@@ -101,6 +101,13 @@ the threading blocks contain contiguous index ranges, to help
 with cache management.
 
 
+For the Raspberry Pi, the raspbian-packaged gcc supports 
+intrinsics also, the header file and the intrinsics themselves
+are all different.  So far, documentation is a bit hit-and-miss --
+there is a good site from the [arm][14] folks, but it's 
+for the v8 architecture, and there's [gcc][15] docs, but they're
+for an ancient version of the compiler.
+
 ## Testing
 
 So I have some codes that work, but I'm still not totally clear
@@ -123,5 +130,7 @@ used with cachegrind.  Seems useful.
 [12]: https://www.linuxjournal.com/content/introduction-gcc-compiler-intrinsics-vector-processing
 [13]: https://gcc.gnu.org/onlinedocs/gcc/Vector-Extensions.html#Vector-Extensions
 [14]: http://pages.tacc.utexas.edu/~eijkhout/pcse/html/omp-loop.html
+[15]: https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/intrinsics
+[16]: https://gcc.gnu.org/onlinedocs/gcc-4.6.4/gcc/ARM-NEON-Intrinsics.html
 
 [rando]: https://superuser.com/questions/458133/how-to-measure-memory-bandwidth-usage
